@@ -10,3 +10,13 @@ stages:
     - data/processed/y_test.csv
     - data/processed/y_train.csv
     - models/scaler.pkl
+  train:
+    cmd: python src/train.py
+    deps:
+    - data/processed/X_test.csv
+    - data/processed/X_train.csv
+    - data/processed/y_test.csv
+    - data/processed/y_train.csv
+    - src/train.py
+    outs:
+    - models/model.pkl
