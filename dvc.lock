@@ -1,0 +1,81 @@
+schema: '2.0'
+stages:
+  preprocess:
+    cmd: python src/preprocessing.py
+    deps:
+    - path: data/processed/processed.csv
+      hash: md5
+      md5: a475aa906655f6f83fadbd9a421873ae
+      size: 38996
+    - path: src/preprocessing.py
+      hash: md5
+      md5: b4a16ed75acda862112be2d2f7367fb7
+      size: 1022
+    outs:
+    - path: data/processed/X_test.csv
+      hash: md5
+      md5: f87fa64f53accc89f0e57152572bf32b
+      size: 52476
+    - path: data/processed/X_train.csv
+      hash: md5
+      md5: f59bbb068a9355065077b86d771d7327
+      size: 209836
+    - path: data/processed/y_test.csv
+      hash: md5
+      md5: 09d262edf45b0193fac7bf5c45c5c980
+      size: 623
+    - path: data/processed/y_train.csv
+      hash: md5
+      md5: 03c021cbdd9623b3399586c2a1253e2c
+      size: 2468
+    - path: models/scaler.pkl
+      hash: md5
+      md5: 6ee763a23fd13c539a40ad7022bc957b
+      size: 1231
+  train:
+    cmd: python src/train.py
+    deps:
+    - path: data/processed/X_test.csv
+      hash: md5
+      md5: f87fa64f53accc89f0e57152572bf32b
+      size: 52476
+    - path: data/processed/X_train.csv
+      hash: md5
+      md5: f59bbb068a9355065077b86d771d7327
+      size: 209836
+    - path: data/processed/y_test.csv
+      hash: md5
+      md5: 09d262edf45b0193fac7bf5c45c5c980
+      size: 623
+    - path: data/processed/y_train.csv
+      hash: md5
+      md5: 03c021cbdd9623b3399586c2a1253e2c
+      size: 2468
+    - path: src/train.py
+      hash: md5
+      md5: 9b694ac4bad736465ab3a64634d39d60
+      size: 1091
+    outs:
+    - path: models/model.pkl
+      hash: md5
+      md5: 8b7261d1eab914f0769c688388d3015d
+      size: 1229417
+  evaluate:
+    cmd: python src/evaluate.py
+    deps:
+    - path: data/processed/X_test.csv
+      hash: md5
+      md5: f87fa64f53accc89f0e57152572bf32b
+      size: 52476
+    - path: data/processed/y_test.csv
+      hash: md5
+      md5: 09d262edf45b0193fac7bf5c45c5c980
+      size: 623
+    - path: models/model.pkl
+      hash: md5
+      md5: 8b7261d1eab914f0769c688388d3015d
+      size: 1229417
+    - path: src/evaluate.py
+      hash: md5
+      md5: b124acd8abf83e7db1a5d44ba3a48b01
+      size: 1114
