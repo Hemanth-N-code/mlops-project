@@ -3,4 +3,6 @@ numpy
 scikit-learn 
 mlflow 
 flask 
-dvc
+dvc 
+scipy 
+joblib
